@@ -772,7 +772,7 @@ Example:
 If you pass {"contract": "foo"}, "Fred" it should return {"contract-signed": "foo - Fred"}
 */
 
-function addSignature(name, object) {
+function addSignature(object, name) {
     var newObject = {};
 
     for (var i in object) {
