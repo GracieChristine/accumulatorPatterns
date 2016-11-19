@@ -11,6 +11,8 @@ function test() {
     return string;
 }
 
+console.log(test());
+
 /*
 ----------------------------------------
 CHALLENGE
@@ -28,7 +30,7 @@ function sum(numArray) {
     return sum;
 }
 
-console.log(sum([1, 2, 3]));
+console.log(sum([1,2,3]));
 
 /*
 ----------------------------------------
@@ -150,7 +152,6 @@ function flipArray(array) {
 
 console.log(flipArray["quick", "brown", "fox"]);
 
-
 /*
 ----------------------------------------
 CHALLENGE
@@ -187,11 +188,11 @@ function reverseString(string) {
     var modifiedString = [];
     var newString = [];
 
-    for (var i = 0; i < string.length; i++) {
-        modifiedString.push(string[i]);
-    }
-    for (var j = modifiedString.length - 1; j >= 0; j--) {
-        newString.push(modifiedString[j]);
+    // for (var i = 0; i < string.length; i++) {
+    //     modifiedString.push(string[i]);
+    // }
+    for (var j = string.length - 1; j >= 0; j--) {
+        newString.push(string[j]);
     }
     return newString.join("");
 }
@@ -218,7 +219,6 @@ function repeats(string) {
         return false;
 
     for (var i = 0; i < leftHalf.length; i++) {
-        console.log("entered loop");
         console.log(leftHalf[i] + " and " + rightHalf[i]);
         if (leftHalf[i] !== rightHalf[i]) {
             console.log(leftHalf[i], rightHalf[i]);
@@ -326,7 +326,8 @@ function countVowels(string) {
     }
     return (newString.join("").length);
 }
-countVowels("you");
+
+console.log(countVowels("graceli"));
 
 /*
 ----------------------------------------
@@ -697,7 +698,7 @@ function min(array) {
     return minArray;
 }
 
-console.log(min([0, -3, 2, 5]));
+console.log(min([0, -3, -8, 5]));
 
 /*
 ----------------------------------------
@@ -772,21 +773,22 @@ Example:
 If you pass {"contract": "foo"}, "Fred" it should return {"contract-signed": "foo - Fred"}
 */
 
-function addSignature(object, name) {
+function addSignature(name, object) {
     var newObject = {};
 
-    for (var i in object) {
-        var key = i;
-        i += "-signed";
-        newObject[i] = object[key] + (" - " + name);
+    for (var property in object) {
+        var key = property;
+
+        property += "-signed";
+        //property = keys; x = value)
+        newObject[property] = object[key] + (" - " + name);
     }
     return newObject;
 }
 
-console.log(addSignature({
+console.log(addSignature("Fred", {
     contract: "foo"
-}, "Fred"));
-
+}));
 
 /*
 ----------------------------------------
@@ -803,12 +805,13 @@ function pairs(object) {
     if (empty === 0)
         return [];
     console.log(empty)
-    for (var i in object) {
-        array.push(i + " - " + object[i]);
+    for (var property in object) {
+        array.push(property + " - " + object[property]);
     }
     return (array);
 }
-pairs({
+
+console.log({
     name: "Will",
     age: 24
 });
@@ -825,8 +828,8 @@ If you pass {a: 1, b: 2} it should return 3
 function sumValues(object) {
     var sum = 0;
 
-    for (var i in object) {
-        sum += object[i];
+    for (var property in object) {
+        sum += object[property];
     }
     return sum
 }
@@ -850,15 +853,15 @@ function biggestProperty(theObject) {
         return undefined;
     }
 
-    for (var j in theObject) {
-        var highestValue = theObject[j];
+    for (var property1 in theObject) {
+        var highestValue = theObject[property1];
         break;
     }
     // console.log(highestValue);
 
-    for (var i in theObject) {
-        if (theObject[i] > highestValue) {
-            highestValue = i;
+    for (var property2 in theObject) {
+        if (theObject[property2] > highestValue) {
+            highestValue = property2;
         }
     }
     // console.log(highestValue);
@@ -880,9 +883,9 @@ If you pass {1999: 4036, 2000: 7654} and 4036, it should return '1999'
 */
 
 function keyForValue(object, value) {
-    for (var i in object) {
-        if (object[i] === value) {
-            return i;
+    for (var property in object) {
+        if (object[property] === value) {
+            return property;
         }
     }
 }
@@ -902,8 +905,8 @@ If you pass {1999: 4036, 2000: 7654} and 4036, it should return true
 */
 
 function containsValue(object, value) {
-    for (var i in object) {
-        if (object[i] === value)
+    for (var property in object) {
+        if (object[property] === value)
             return true;
     }
     return false;
